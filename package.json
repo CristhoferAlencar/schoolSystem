@@ -1,0 +1,24 @@
+{
+  "name": "school-system",
+  "version": "1.0.0",
+  "description": "System for School management\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[M",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CristhoferAlencar/schoolSystem.git"
+  },
+  "author": "Cristhofer Alencar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CristhoferAlencar/schoolSystem/issues"
+  },
+  "homepage": "https://github.com/CristhoferAlencar/schoolSystem#readme",
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.16.0"
+  }
+}
