@@ -14,6 +14,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>university/images/favicon.png">
     <title>Elite Admin Template - The Ultimate Multipurpose admin template</title>
     
+    <!--Toaster Popup message CSS -->
+    <link href="<?php echo base_url(); ?>node_modules/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet">
     <!-- page css -->
     <link href="<?php echo base_url(); ?>university/css/pages/login-register-lock.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -44,16 +46,17 @@
     <section id="wrapper" class="login-register login-sidebar" style="background-image:url(<?php echo base_url(); ?>university/images/background/login-register.jpg);">
         <div class="login-box card">
             <div class="card-body">
-                <form class="form-horizontal form-material text-center" id="loginform" action="index.html">
+                
+                <form method="POST" role="form" id="loginform" class="form-horizontal form-material text-center" action="<?php echo base_url(); ?>login/check_login">
                     <a href="javascript:void(0)" class="db"><img src="<?php echo base_url(); ?>university/images/logo-icon.png" alt="Home"><br><img src="<?php echo base_url(); ?>university/images/logo-text.png" alt="Home"></a>
                     <div class="form-group m-t-40">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" required="" placeholder="<?php echo get_phrase('Username'); ?>">
+                            <input class="form-control" type="email" name="email" required placeholder="<?php echo get_phrase('Email'); ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input class="form-control" type="password" required="" placeholder="<?php echo get_phrase('Password'); ?>">
+                            <input class="form-control" type="password" name="password" required placeholder="<?php echo get_phrase('Password'); ?>">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -106,6 +109,8 @@
     <!-- Bootstrap tether Core JavaScript -->
     <script src="<?php echo base_url(); ?>node_modules/popper.js/dist/popper.min.js"></script>
     <script src="<?php echo base_url(); ?>node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Popup message jquery -->
+    <script src="<?php echo base_url(); ?>node_modules/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
     <!--Custom JavaScript -->
     <script type="text/javascript">
         $(function() {
@@ -122,6 +127,22 @@
             $("#recoverform").fadeIn();
         });
     </script>
+
+    <?php if (($this->session->flashdata('error_message')) != ""): ?>
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $.toast({
+            
+                text: '<?php echo $this->session->flashdata('error_message'); ?>',
+                position: 'top-right',
+                loaderBg: '#f56954',
+                icon: 'warning',
+                hideAfter: 3500,
+                stack: 6
+            })
+        });
+        </script>
+    <?php endif; ?>
     
 </body>
 
