@@ -32,10 +32,15 @@ $loginType      = $this->session->userdata('login_type');
     <link href="<?php echo base_url(); ?>node_modules/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet">
     <!-- Morris CSS -->
     <link href="<?php echo base_url(); ?>node_modules/morris-js-module/morris.css" rel="stylesheet">
+    <!-- Popup CSS -->
+    <link href="<?php echo base_url(); ?>node_modules/magnific-popup/dist/magnific-popup.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="<?php echo base_url(); ?>university/css/style.css" rel="stylesheet">
     <!-- Dashboard 1 Page CSS -->
     <link href="<?php echo base_url(); ?>university/css/pages/dashboard1.css" rel="stylesheet">
+    <!-- page css -->
+    <link href="<?php echo base_url(); ?>university/css/pages/user-card.css" rel="stylesheet">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -130,6 +135,8 @@ $loginType      = $this->session->userdata('login_type');
     <script src="<?php echo base_url(); ?>node_modules/jquery-sparkline/jquery.sparkline.min.js"></script>
     <!-- Popup message jquery -->
     <script src="<?php echo base_url(); ?>node_modules/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
+    <!-- Magnific popup JavaScript -->
+    <script src="<?php echo base_url(); ?>node_modules/magnific-popup/dist/jquery.magnific-popup.js"></script>
     <!-- Chart JS -->
     <script src="<?php echo base_url(); ?>university/js/dashboard1.js"></script>
 
@@ -137,7 +144,6 @@ $loginType      = $this->session->userdata('login_type');
         <script type="text/javascript">
             $(document).ready(function() {
                 $.toast({
-                
                     text: '<?php echo $this->session->flashdata('error_message'); ?>',
                     position: 'top-right',
                     loaderBg: '#f56954',
@@ -147,7 +153,21 @@ $loginType      = $this->session->userdata('login_type');
                 })
             });
         </script>
-	<?php endif; ?>
+    <?php endif; ?>
+    
+    <script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#logoPreview').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 </body>
 
 </html>

@@ -258,11 +258,11 @@
                     <!-- text-->
                     <div class="dropdown-divider"></div>
                     <!-- text-->
-                    <a href="javascript:void(0)" class="dropdown-item"><i class="ti-settings"></i> Account Setting</a>
+                    <a href="<?php echo base_url(); ?>systemsetting/system_settings" class="dropdown-item"><i class="ti-settings"></i> <?php echo get_phrase('System Settings'); ?></a>
                     <!-- text-->
                     <div class="dropdown-divider"></div>
                     <!-- text-->
-                    <a href="<?php echo base_url(); ?>login/logout" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
+                    <a href="<?php echo base_url(); ?>login/logout" class="dropdown-item"><i class="fa fa-power-off"></i> <?php echo get_phrase('Logout'); ?></a>
                     <!-- text-->
                 </div>
             </li>
