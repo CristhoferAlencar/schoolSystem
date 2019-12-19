@@ -3,15 +3,14 @@
 <!-- ============================================================== -->
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">Basic Form</h4>
+        <h4 class="text-themecolor"><?php echo get_phrase('System Settings'); ?></h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
         <div class="d-flex justify-content-end align-items-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                <li class="breadcrumb-item active">Basic Form</li>
+                <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>admin/dashboard"><?php echo get_phrase('Dashboard'); ?></a></li>
+                <li class="breadcrumb-item active"><?php echo get_phrase('System Settings'); ?></li>
             </ol>
-            <button type="button" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</button>
         </div>
     </div>
 </div>
@@ -26,8 +25,7 @@
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Sample Form with the Icons</h4>
-                <h5 class="card-subtitle">made with bootstrap elements</h5>
+                <h4 class="card-title"><?php echo get_phrase('System Informations'); ?></h4>
                 
                 <?php echo form_open(base_url(). 'systemsetting/system_settings/do_update', array('class' => 'form pt-3', 'enctype'=> 'multipart/form-data'));?>
                     

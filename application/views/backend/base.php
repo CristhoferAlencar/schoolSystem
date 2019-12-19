@@ -1,7 +1,7 @@
 <?php 
-// $system_name    = $this->db->get_where('settings', array('type' => 'system_name'))->row()->description;
 // $system_address = $this->db->get_where('settings', array('type' => 'address'))->row()->description;
 // $footer         = $this->db->get_where('settings', array('type' => 'footer'))->row()->description;
+$system_name    = $this->db->get_where('settings', array('type' => 'system_name'))->row()->description;
 $language     = $this->db->get_where('settings', array('type' => 'language'))->row()->description;
 $loginType      = $this->session->userdata('login_type');
 ?>
@@ -31,9 +31,9 @@ $loginType      = $this->session->userdata('login_type');
     <!--Toaster Popup message CSS -->
     <link href="<?php echo base_url(); ?>node_modules/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet">
     <!-- Morris CSS -->
-    <link href="<?php echo base_url(); ?>node_modules/morris-js-module/morris.css" rel="stylesheet">
+    <!-- <link href="<?php echo base_url(); ?>node_modules/morris-js-module/morris.css" rel="stylesheet"> -->
     <!-- Popup CSS -->
-    <link href="<?php echo base_url(); ?>node_modules/magnific-popup/dist/magnific-popup.css" rel="stylesheet">
+    <!-- <link href="<?php echo base_url(); ?>node_modules/magnific-popup/dist/magnific-popup.css" rel="stylesheet"> -->
     <!-- Custom CSS -->
     <link href="<?php echo base_url(); ?>university/css/style.css" rel="stylesheet">
     <!-- Dashboard 1 Page CSS -->
@@ -116,7 +116,7 @@ $loginType      = $this->session->userdata('login_type');
     <!-- ============================================================== -->
     <script src="<?php echo base_url(); ?>node_modules/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="<?php echo base_url(); ?>node_modules/popper.js/dist/popper.js"></script>
+    <script src="<?php echo base_url(); ?>node_modules/popper.js/dist/umd/popper.js"></script>
     <script src="<?php echo base_url(); ?>node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="<?php echo base_url(); ?>university/js/perfect-scrollbar.jquery.min.js"></script>
@@ -130,15 +130,15 @@ $loginType      = $this->session->userdata('login_type');
     <!-- This page plugins -->
     <!-- ============================================================== -->
     <!--morris JavaScript -->
-    <script src="<?php echo base_url(); ?>node_modules/raphael/raphael.js"></script>
+    <!-- <script src="<?php echo base_url(); ?>node_modules/raphael/raphael.js"></script>
     <script src="<?php echo base_url(); ?>node_modules/morris-js-module/morris.js"></script>
-    <script src="<?php echo base_url(); ?>node_modules/jquery-sparkline/jquery.sparkline.min.js"></script>
+    <script src="<?php echo base_url(); ?>node_modules/jquery-sparkline/jquery.sparkline.min.js"></script> -->
     <!-- Popup message jquery -->
     <script src="<?php echo base_url(); ?>node_modules/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
     <!-- Magnific popup JavaScript -->
     <script src="<?php echo base_url(); ?>node_modules/magnific-popup/dist/jquery.magnific-popup.js"></script>
     <!-- Chart JS -->
-    <script src="<?php echo base_url(); ?>university/js/dashboard1.js"></script>
+    <!-- <script src="<?php echo base_url(); ?>university/js/dashboard1.js"></script> -->
 
     <?php if (($this->session->flashdata('error_message')) != ""): ?>
         <script type="text/javascript">
@@ -154,7 +154,7 @@ $loginType      = $this->session->userdata('login_type');
             });
         </script>
     <?php endif; ?>
-    
+
     <script type="text/javascript">
         function readURL(input) {
             if (input.files && input.files[0]) {

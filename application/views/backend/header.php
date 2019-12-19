@@ -3,7 +3,7 @@
     <!-- Logo -->
     <!-- ============================================================== -->
     <div class="navbar-header">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="<?php echo base_url(); ?>admin/dashboard">
             <!-- Logo icon --><b>
                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                 <!-- Dark Logo icon -->
@@ -247,10 +247,27 @@
             <!-- User Profile -->
             <!-- ============================================================== -->
             <li class="nav-item dropdown u-pro">
-                <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo base_url(); ?>university/images/users/1.jpg" alt="user" class=""> <span class="hidden-md-down">Mark &nbsp;<i class="fa fa-angle-down"></i></span> </a>
+                <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <?php
+                        $key = $this->session->userdata('login_type') . '_id';
+                        $face_file = 'uploads/' . $this->session->userdata('login_type') . '_image/' . $this->session->userdata($key) . '.jpg';
+                        if (!file_exists($face_file)) {
+                            $face_file = 'uploads/defaults/user-avatar.jpg';                                 
+                        }
+                    ?>
+                    <img src="<?php echo base_url() . $face_file;?>" alt="user">
+                    <?php 
+                        $account_type   =   $this->session->userdata('login_type');
+                        $account_id     =   $account_type.'_id';
+                        // $name           =   $this->crud_model->get_type_name_by_id($account_type, $this->session->userdata($account_id), 'name');
+                        
+                        $test     =   "Teste";
+                    ?>
+                    <span class="hidden-md-down"><?php echo $test; ?> &nbsp;<i class="fa fa-angle-down"></i></span> 
+                </a>
                 <div class="dropdown-menu dropdown-menu-right animated flipInY">
                     <!-- text-->
-                    <a href="javascript:void(0)" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
+                    <a href="<?php echo base_url(); ?>admin/manage_profile" class="dropdown-item"><i class="ti-user"></i> <?php echo get_phrase('My Profile'); ?></a>
                     <!-- text-->
                     <a href="javascript:void(0)" class="dropdown-item"><i class="ti-wallet"></i> My Balance</a>
                     <!-- text-->

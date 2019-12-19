@@ -47,7 +47,7 @@
         <div class="login-box card">
             <div class="card-body">
                 
-                <form method="POST" role="form" id="loginform" class="form-horizontal form-material text-center" action="<?php echo base_url(); ?>login/check_login">
+                <form method="POST" role="form" id="loginform" class="form-horizontal form-material text-center" action="<?php echo base_url(); ?>login/validate_login">
                     <a href="javascript:void(0)" class="db"><img src="<?php echo base_url(); ?>university/images/logo-icon.png" alt="Home"><br><img src="<?php echo base_url(); ?>university/images/logo-text.png" alt="Home"></a>
                     <div class="form-group m-t-40">
                         <div class="col-xs-12">
@@ -130,17 +130,16 @@
 
     <?php if (($this->session->flashdata('error_message')) != ""): ?>
         <script type="text/javascript">
-        $(document).ready(function() {
-            $.toast({
-            
-                text: '<?php echo $this->session->flashdata('error_message'); ?>',
-                position: 'top-right',
-                loaderBg: '#f56954',
-                icon: 'warning',
-                hideAfter: 3500,
-                stack: 6
-            })
-        });
+            $(document).ready(function() {
+                $.toast({
+                    text: '<?php echo $this->session->flashdata('error_message'); ?>',
+                    position: 'top-right',
+                    loaderBg: '#f56954',
+                    icon: 'warning',
+                    hideAfter: 3500,
+                    stack: 6
+                })
+            });
         </script>
     <?php endif; ?>
     

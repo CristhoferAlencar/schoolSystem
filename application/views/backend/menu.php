@@ -3,17 +3,37 @@
     <!-- Sidebar navigation-->
     <nav class="sidebar-nav">
         <ul id="sidebarnav">
-            <li class="user-pro"> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><img src="<?php echo base_url(); ?>university/images/users/1.jpg" alt="user-img" class="img-circle"><span class="hide-menu">Prof. Mark</span></a>
+            <li class="user-pro"> 
+                <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                    
+                    <?php
+                        $key = $this->session->userdata('login_type') . '_id';
+                        $face_file = 'uploads/' . $this->session->userdata('login_type') . '_image/' . $this->session->userdata($key) . '.jpg';
+                        if (!file_exists($face_file)) {
+                            $face_file = 'uploads/defaults/user-avatar.jpg';                                 
+                        }
+                    ?>
+                    <img src="<?php echo base_url() . $face_file;?>" alt="user-img" class="img-circle">
+                    
+                    <?php 
+                        $account_type   =   $this->session->userdata('login_type');
+                        $account_id     =   $account_type.'_id';
+                        // $name           =   $this->crud_model->get_type_name_by_id($account_type, $this->session->userdata($account_id), 'name');
+                        
+                        $test     =   "Teste";
+                    ?>
+                    <span class="hide-menu"><?php echo $test; ?></span>
+                </a>
                 <ul aria-expanded="false" class="collapse">
-                    <li><a href="javascript:void(0)"><i class="ti-user"></i> My Profile</a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/manage_profile"><i class="ti-user"></i> <?php echo get_phrase('My Profile'); ?></a></li>
                     <li><a href="javascript:void(0)"><i class="ti-wallet"></i> My Balance</a></li>
                     <li><a href="javascript:void(0)"><i class="ti-email"></i> Inbox</a></li>
-                    <li><a href="javascript:void(0)"><i class="ti-settings"></i> Account Setting</a></li>
-                    <li><a href="javascript:void(0)"><i class="fa fa-power-off"></i> Logout</a></li>
+                    <li><a href="<?php echo base_url(); ?>systemsetting/system_settings"><i class="ti-settings"></i> <?php echo get_phrase('System Settings'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>login/logout"><i class="fa fa-power-off"></i> <?php echo get_phrase('Logout'); ?></a></li>
                 </ul>
             </li>
             <li class="nav-small-cap">--- PERSONAL</li>
-            <li> <a class="waves-effect waves-dark" href="index.html"><i class="icon-speedometer"></i><span class="hide-menu">Dashboard</span></a>
+            <li> <a class="waves-effect waves-dark" href="<?php echo base_url(); ?>admin/dashboard"><i class="icon-speedometer"></i><span class="hide-menu"><?php echo get_phrase('Dashboard'); ?></span></a>
             </li>
             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Apps</span></a>
                 <ul aria-expanded="false" class="collapse">
