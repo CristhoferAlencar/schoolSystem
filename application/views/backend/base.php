@@ -1,6 +1,5 @@
 <?php 
 // $system_address = $this->db->get_where('settings', array('type' => 'address'))->row()->description;
-// $footer         = $this->db->get_where('settings', array('type' => 'footer'))->row()->description;
 $system_name    = $this->db->get_where('settings', array('type' => 'system_name'))->row()->description;
 $language     = $this->db->get_where('settings', array('type' => 'language'))->row()->description;
 $loginType      = $this->session->userdata('login_type');
@@ -34,6 +33,8 @@ $loginType      = $this->session->userdata('login_type');
     <!-- <link href="<?php echo base_url(); ?>node_modules/morris-js-module/morris.css" rel="stylesheet"> -->
     <!-- Popup CSS -->
     <!-- <link href="<?php echo base_url(); ?>node_modules/magnific-popup/dist/magnific-popup.css" rel="stylesheet"> -->
+    <!-- Data Table CSS -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css">
     <!-- Custom CSS -->
     <link href="<?php echo base_url(); ?>university/css/style.css" rel="stylesheet">
     <!-- Dashboard 1 Page CSS -->
@@ -111,6 +112,9 @@ $loginType      = $this->session->userdata('login_type');
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
+    
+    <?php include 'modal.php'; ?>
+
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
@@ -137,6 +141,18 @@ $loginType      = $this->session->userdata('login_type');
     <script src="<?php echo base_url(); ?>node_modules/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
     <!-- Magnific popup JavaScript -->
     <script src="<?php echo base_url(); ?>node_modules/magnific-popup/dist/jquery.magnific-popup.js"></script>
+    <!-- This is data table -->
+    <script src="<?php echo base_url(); ?>node_modules/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="<?php echo base_url(); ?>node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js"></script>
+    <!-- start - This is for export functionality only -->
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+    <!-- end - This is for export functionality only -->
     <!-- Chart JS -->
     <!-- <script src="<?php echo base_url(); ?>university/js/dashboard1.js"></script> -->
 
@@ -167,6 +183,17 @@ $loginType      = $this->session->userdata('login_type');
                 reader.readAsDataURL(input.files[0]);
             }
         }
+    </script>
+
+    <script>
+        $('#example23').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+            ],
+        });
+
+        $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
     </script>
 </body>
 

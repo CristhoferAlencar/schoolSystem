@@ -99,7 +99,7 @@ class Admin extends CI_Controller {
             redirect(base_url(). 'admin/enquiry_category', 'refresh');
         }
     
-        $page_data['page_name']     = 'enquiry_category';
+        $page_data['page_name']     = 'enquiries/enquiry_category';
         $page_data['page_title']    = get_phrase('Manage Category');
         $page_data['enquiry_category']  = $this->db->get('enquiry_category')->result_array();
         

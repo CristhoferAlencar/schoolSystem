@@ -33,8 +33,16 @@
                 </ul>
             </li>
             <li class="nav-small-cap">--- PERSONAL</li>
-            <li> <a class="waves-effect waves-dark" href="<?php echo base_url(); ?>admin/dashboard"><i class="icon-speedometer"></i><span class="hide-menu"><?php echo get_phrase('Dashboard'); ?></span></a>
+            <li> <a class="waves-effect waves-dark" href="<?php echo base_url(); ?>admin/dashboard"><i class="icon-speedometer"></i><span class="hide-menu"><?php echo get_phrase('Dashboard'); ?></span></a></li>
+            
+            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-graduation-cap"></i><span class="hide-menu">Manage Academics</span></a>
+                <ul aria-expanded="false" class="collapse">
+                    <li><a href="<?php echo base_url(); ?>admin/enquiry_category">Enquiry Category</a></li>
+                </ul>
             </li>
+            <!------ End Personal ------>
+
+
             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Apps</span></a>
                 <ul aria-expanded="false" class="collapse">
                     <li><a href="app-calendar.html">Calendar</a></li>

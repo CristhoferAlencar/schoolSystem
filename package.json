@@ -18,6 +18,7 @@
   "homepage": "https://github.com/CristhoferAlencar/schoolSystem#readme",
   "dependencies": {
     "bootstrap": "^4.4.1",
+    "datatables.net-bs4": "^1.10.20",
     "jquery": "^3.4.1",
     "jquery-sparkline": "^2.4.0",
     "jquery-toast-plugin": "^1.3.2",
