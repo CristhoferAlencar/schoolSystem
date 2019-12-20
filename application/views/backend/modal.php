@@ -17,15 +17,6 @@
 </script>
     
 <!-- (Ajax Modal)-->
-<!-- <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="modal_ajax">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content slimscrollsidebar">
-			<div class="modal-body " style="height:400px"></div>
-		</div>
-	</div>
-</div> -->
-
-<!-- sample modal content -->
 <div id="modal_ajax" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 	<div class="modal-dialog">
 		<div class="modal-content slimscrollsidebar"></div>

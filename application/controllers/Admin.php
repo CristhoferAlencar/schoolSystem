@@ -7,6 +7,7 @@ class Admin extends CI_Controller {
         parent::__construct();
         $this->load->database();
         $this->load->library('session');	//Load library for session
+        $this->load->model('crud_model');
 				
 		/*cache control*/
         $this->output->set_header('Last-Modified: ' . gmdate("D, d M Y H:i:s") . ' GMT');
@@ -67,33 +68,22 @@ class Admin extends CI_Controller {
     }
 
     function enquiry_category($param1 = '', $param2 ='', $param3 ='') {
-
         if($param1 == 'insert'){
-            $page_data['category']  =   $this->input->post('category');
-            $page_data['purpose']   =   $this->input->post('purpose');
-            $page_data['whom']      =   $this->input->post('whom');
-    
-            $this->db->insert('enquiry_category', $page_data);
+            $this->crud_model->enquiry_category();
             $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
             
             redirect(base_url(). 'admin/enquiry_category', 'refresh');
         }
     
         if($param1 == 'update'){
-            $page_data['category']  =   $this->input->post('category');
-            $page_data['purpose']   =   $this->input->post('purpose');
-            $page_data['whom']      =   $this->input->post('whom');
-    
-            $this->db->where('enquiry_category_id', $param2);
-            $this->db->update('enquiry_category', $page_data);
+            $this->crud_model->update_club($param2);
             $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
-            
+           
             redirect(base_url(). 'admin/enquiry_category', 'refresh');
         }
     
         if($param1 == 'delete'){
-            $this->db->where('enquiry_category_id', $param2);
-            $this->db->delete('enquiry_category');
+            $this->crud_model->delete_category($param2);
             $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
             
             redirect(base_url(). 'admin/enquiry_category', 'refresh');
@@ -102,6 +92,64 @@ class Admin extends CI_Controller {
         $page_data['page_name']     = 'enquiries/enquiry_category';
         $page_data['page_title']    = get_phrase('Manage Category');
         $page_data['enquiry_category']  = $this->db->get('enquiry_category')->result_array();
+        $this->load->view('backend/base', $page_data);
+    
+    }
+
+    function list_enquiry($param1 = '', $param2 ='', $param3 ='') {
+
+        if($param1 == 'delete'){
+            $this->db->where('enquiry_id', $param2);
+            $this->db->delete('enquiry');
+            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+            
+            redirect(base_url(). 'admin/list_enquiry', 'refresh');
+        }
+
+        $page_data['page_name']     = 'enquiries/list_enquiry';
+        $page_data['page_title']    = get_phrase('All Enquiries');
+        $page_data['select_enquiry']  = $this->db->get('enquiry')->result_array();
+        
+        $this->load->view('backend/base', $page_data);
+    }
+
+    function club($param1 = '', $param2 ='', $param3 ='') {
+
+        if($param1 == 'insert') {
+            $page_data['club_name']  =   $this->input->post('club_name');
+            $page_data['description']   =   $this->input->post('desc');
+            $page_data['date']      =   $this->input->post('date');
+    
+            $this->db->insert('club', $page_data);
+            $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
+            
+            redirect(base_url(). 'admin/club', 'refresh');
+        }
+
+        if($param1 == 'update') {
+            $page_data['club_name']  =   $this->input->post('club_name');
+            $page_data['description']   =   $this->input->post('desc');
+            $page_data['date']      =   $this->input->post('date');
+    
+            $this->db->where('club_id', $param2);
+            $this->db->update('club', $page_data);
+            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+            
+            redirect(base_url(). 'admin/club', 'refresh');
+        }
+
+
+        if($param1 == 'delete'){
+            $this->db->where('club_id', $param2);
+            $this->db->delete('club');
+            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+            
+            redirect(base_url(). 'admin/club', 'refresh');
+        }
+
+        $page_data['page_name']     = 'club/index';
+        $page_data['page_title']    = get_phrase('Manage Club');
+        $page_data['select_club']  = $this->db->get('club')->result_array();
         
         $this->load->view('backend/base', $page_data);
     }

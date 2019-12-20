@@ -38,6 +38,8 @@
             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-graduation-cap"></i><span class="hide-menu">Manage Academics</span></a>
                 <ul aria-expanded="false" class="collapse">
                     <li><a href="<?php echo base_url(); ?>admin/enquiry_category">Enquiry Category</a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/list_enquiry">View Enquiries</a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/club">School Clubs</a></li>
                 </ul>
             </li>
             <!------ End Personal ------>
