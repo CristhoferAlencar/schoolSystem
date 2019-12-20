@@ -46,5 +46,60 @@ class Crud_model extends CI_Model {
         $this->db->delete('enquiry_category');
     }
 
+    function insert_circular() {
+        $page_data['title']         =   $this->input->post('title');
+        $page_data['reference']     =   $this->input->post('reference');
+        $page_data['content']       =   $this->input->post('content');
+        $page_data['date']          =   $this->input->post('date');
+
+        $this->db->insert('circular', $page_data);
+    }
+
+    function update_circular($param2) {
+        $page_data['title']         =   $this->input->post('title');
+        $page_data['reference']     =   $this->input->post('reference');
+        $page_data['content']       =   $this->input->post('content');
+        $page_data['date']          =   $this->input->post('date');
+
+        $this->db->where('circular_id', $param2);
+        $this->db->update('circular', $page_data);
+    }
+
+    function delete_circular($param2) {
+        $this->db->where('circular_id', $param2);
+        $this->db->delete('circular');
+    }
+
+    function insert_parent() {
+        $page_data = array(
+            'name' => $this->input->post('name'),
+            'email' => $this->input->post('email'),
+			'password' => sha1($this->input->post('password')),
+			'phone' => $this->input->post('phone'),
+        	'address' => $this->input->post('address'),
+        	'profession' => $this->input->post('profession'),
+        );
+
+        $this->db->insert('parent', $page_data);
+    }
+
+    function update_parent($param2) {
+        $page_data = array(
+            'name' => $this->input->post('name'),
+            'email' => $this->input->post('email'),
+			'phone' => $this->input->post('phone'),
+        	'address' => $this->input->post('address'),
+        	'profession' => $this->input->post('profession'),
+        );
+
+        $this->db->where('parent_id', $param2);
+        $this->db->update('parent', $page_data);
+    }
+
+    function delete_parent($param2) {
+        $this->db->where('parent_id', $param2);
+        $this->db->delete('parent');
+    }
+
 }
 

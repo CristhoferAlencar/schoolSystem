@@ -154,4 +154,64 @@ class Admin extends CI_Controller {
         $this->load->view('backend/base', $page_data);
     }
 
+    function circular($param1 = '', $param2 = '', $param3 = '') {
+        if ($param1 == 'insert'){
+            $this->crud_model->insert_circular();
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully saved'));
+            
+            redirect(base_url(). 'admin/circular', 'refresh');
+        }
+
+        if($param1 == 'update') {
+            $this->crud_model->update_circular($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully updated'));
+            
+            redirect(base_url(). 'admin/circular', 'refresh');
+        }
+
+        if($param1 == 'delete'){
+            $this->crud_model->delete_circular($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully deleted'));
+            
+            redirect(base_url(). 'admin/circular', 'refresh');
+        }
+
+        $page_data['page_name']         = 'circular/index';
+        $page_data['page_title']        = get_phrase('Manage Circular');
+        $page_data['select_circular']   = $this->db->get('circular')->result_array();
+        
+        $this->load->view('backend/base', $page_data);
+    }
+
+    function parent($param1 = '', $param2 = '', $param3 = '') {
+
+        if ($param1 == 'insert') {
+            $this->crud_model->insert_parent();
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully saved'));
+            
+            redirect(base_url(). 'admin/parent', 'refresh');
+        }
+
+        if($param1 == 'update') {
+            $this->crud_model->update_parent($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully updated'));
+            
+            redirect(base_url(). 'admin/parent', 'refresh');
+        }
+
+
+        if($param1 == 'delete') {
+            $this->crud_model->delete_parent($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully deleted'));
+           
+            redirect(base_url(). 'admin/parent', 'refresh');
+        }
+
+        $page_data['page_name']       = 'parent/index';
+        $page_data['page_title']      = get_phrase('Manage Parent');
+        $page_data['select_parent']   = $this->db->get('parent')->result_array();
+        
+        $this->load->view('backend/base', $page_data);
+    }
+
 }

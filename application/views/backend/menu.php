@@ -40,6 +40,8 @@
                     <li><a href="<?php echo base_url(); ?>admin/enquiry_category">Enquiry Category</a></li>
                     <li><a href="<?php echo base_url(); ?>admin/list_enquiry">View Enquiries</a></li>
                     <li><a href="<?php echo base_url(); ?>admin/club">School Clubs</a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/circular">Manage Circular</a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/parent">Manage Parents</a></li>
                 </ul>
             </li>
             <!------ End Personal ------>
