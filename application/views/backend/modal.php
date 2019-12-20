@@ -37,8 +37,8 @@
 		<div class="modal-content" style="margin-top:100px;">
 			
 			<div class="modal-header">
+				<h4 class="modal-title" style="text-align:left;"><strong>CONFIRMATION&nbsp;!!!</strong></h4>
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" style="text-align:left;"><strong style="color:#FFFFFF">CONFIRMATION&nbsp;!!!</strong></h4>
 			</div>
 			
 

@@ -32,7 +32,7 @@ $loginType      = $this->session->userdata('login_type');
     <!-- Morris CSS -->
     <!-- <link href="<?php echo base_url(); ?>node_modules/morris-js-module/morris.css" rel="stylesheet"> -->
     <!-- Popup CSS -->
-    <!-- <link href="<?php echo base_url(); ?>node_modules/magnific-popup/dist/magnific-popup.css" rel="stylesheet"> -->
+    <link href="<?php echo base_url(); ?>node_modules/magnific-popup/dist/magnific-popup.css" rel="stylesheet">
     <!-- Data Table CSS -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css">
     <!-- Custom CSS -->
@@ -194,6 +194,19 @@ $loginType      = $this->session->userdata('login_type');
         });
 
         $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
+    </script>
+    
+    <script>
+        $(document).ready(function() {
+            $('.image-popup-vertical-fit').magnificPopup({
+                type: 'image',
+                closeOnContentClick: true,
+                mainClass: 'mfp-img-mobile',
+                image: {
+                	verticalFit: true
+                }
+            });
+        });
     </script>
 </body>
 

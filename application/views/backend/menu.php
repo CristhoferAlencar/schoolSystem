@@ -37,11 +37,20 @@
             
             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-graduation-cap"></i><span class="hide-menu">Manage Academics</span></a>
                 <ul aria-expanded="false" class="collapse">
-                    <li><a href="<?php echo base_url(); ?>admin/enquiry_category">Enquiry Category</a></li>
-                    <li><a href="<?php echo base_url(); ?>admin/list_enquiry">View Enquiries</a></li>
-                    <li><a href="<?php echo base_url(); ?>admin/club">School Clubs</a></li>
-                    <li><a href="<?php echo base_url(); ?>admin/circular">Manage Circular</a></li>
-                    <li><a href="<?php echo base_url(); ?>admin/parent">Manage Parents</a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/enquiry_category"><?php echo get_phrase('Enquiry Category'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/list_enquiry"><?php echo get_phrase('View Enquiries'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/club"><?php echo get_phrase('School Clubs'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/circular"><?php echo get_phrase('Manage Circular'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/parent"><?php echo get_phrase('Manage Parents'); ?></a></li>
+                </ul>
+            </li>
+            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-building"></i><span class="hide-menu"><?php echo get_phrase('Manage Employees'); ?></span></a>
+                <ul aria-expanded="false" class="collapse">
+                    <li><a href="<?php echo base_url(); ?>admin/teachers"><?php echo get_phrase('Teachers'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/librarian"><?php echo get_phrase('Librarian'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/accountants"><?php echo get_phrase('Teachers'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/hostel_manager"><?php echo get_phrase('Hostel Manager'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/human_resources"><?php echo get_phrase('Human Resources'); ?></a></li>
                 </ul>
             </li>
             <!------ End Personal ------>

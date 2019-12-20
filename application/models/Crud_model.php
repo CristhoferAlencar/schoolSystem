@@ -101,5 +101,73 @@ class Crud_model extends CI_Model {
         $this->db->delete('parent');
     }
 
+    function insert_librarian() {
+        $page_data = array(		// array data that postulate the input fileds
+            'name' 				=> $this->input->post('name'),
+            'librarian_number' 	=> $this->input->post('librarian_number'),
+            'birthday' 			=> $this->input->post('birthday'),
+            'sex' 				=> $this->input->post('sex'),
+            'religion' 			=> $this->input->post('religion'),
+            'blood_group' 		=> $this->input->post('blood_group'),
+            'address' 			=> $this->input->post('address'),
+            'phone' 			=> $this->input->post('phone'),
+            'email' 			=> $this->input->post('email'),
+            
+            'facebook' 			=> $this->input->post('facebook'),
+            'twitter' 			=> $this->input->post('twitter'),
+            'googleplus' 		=> $this->input->post('googleplus'),
+            'linkedin' 			=> $this->input->post('linkedin'),
+            'qualification' 	=> $this->input->post('qualification'),
+            'marital_status'	=> $this->input->post('marital_status'),
+            'file_name'	        => $_FILES["file_name"]["name"],
+            'password' 			=> sha1($this->input->post('password'))
+        );
+            
+        $data['file_name'] = $_FILES["file_name"]["name"];
+		$data['email'] = $this->input->post('email');
+		$check_email = $this->db->get_where('librarian', array('email' => $data['email']))->row()->email;	// checking if email exists in database
+        
+        if($check_email != null) {
+            $this->session->set_flashdata('error_message', get_phrase('Email Already Exist'));
+            
+            redirect(base_url() . 'admin/librarian/', 'refresh');
+		} else {
+            $this->db->insert('librarian', $page_data);
+            $librarian_id = $this->db->insert_id();
+		
+            move_uploaded_file($_FILES["file_name"]["tmp_name"], "uploads/librarian_image/" . $_FILES["file_name"]["name"]);	// upload files
+        	move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/librarian_image/' . $librarian_id . '.jpg');			// image with user ID
+        }
+    }
+
+    function update_librarian($param2) {
+        $page_data = array(			// array starts from here
+            'name'				=> $this->input->post('name'),
+            'birthday'			=> $this->input->post('birthday'),
+            'sex' 				=> $this->input->post('sex'),
+            'religion' 			=> $this->input->post('religion'),
+            'blood_group' 		=> $this->input->post('blood_group'),
+            'address' 			=> $this->input->post('address'),
+            'phone' 			=> $this->input->post('phone'),
+            
+            'email' 			=> $this->input->post('email'),
+            'facebook' 			=> $this->input->post('facebook'),
+            'twitter' 			=> $this->input->post('twitter'),
+            'googleplus' 		=> $this->input->post('googleplus'),
+            'linkedin' 			=> $this->input->post('linkedin'),
+            'qualification' 	=> $this->input->post('qualification'),
+            'marital_status' 	=> $this->input->post('marital_status')
+        );
+
+        $this->db->where('librarian_id', $param2);
+        $this->db->update('librarian', $page_data);
+        move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/librarian_image/' . $param2 . '.jpg');            
+    }
+
+    function delete_librarian($param2) {
+        $this->db->where('librarian_id', $param2);
+        $this->db->delete('librarian');
+    }
+
 }
 

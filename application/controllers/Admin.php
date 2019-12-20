@@ -214,4 +214,34 @@ class Admin extends CI_Controller {
         $this->load->view('backend/base', $page_data);
     }
 
+    function librarian($param1 = '', $param2 = '', $param3 = '') {
+
+        if ($param1 == 'insert'){
+            $this->crud_model->insert_librarian();
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully saved'));
+            
+            redirect(base_url(). 'admin/librarian', 'refresh');
+        }
+
+        if($param1 == 'update'){
+            $this->crud_model->update_librarian($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully updated'));
+            
+            redirect(base_url(). 'admin/librarian', 'refresh');
+        }
+
+        if($param1 == 'delete'){
+            $this->crud_model->delete_librarian($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully deleted'));
+            
+            redirect(base_url(). 'admin/librarian', 'refresh');
+        }
+
+        $page_data['page_name']          = 'librarian/index';
+        $page_data['page_title']         = get_phrase('Manage Librarian');
+        $page_data['select_librarian']   = $this->db->get('librarian')->result_array();
+        
+        $this->load->view('backend/base', $page_data);
+    }
+
 }
