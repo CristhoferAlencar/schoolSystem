@@ -244,4 +244,93 @@ class Admin extends CI_Controller {
         $this->load->view('backend/base', $page_data);
     }
 
+    function accountant($param1 = '', $param2 = '', $param3 = '') {
+
+        if ($param1 == 'insert') {
+            $this->crud_model->insert_accountant();
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully saved'));
+            
+            redirect(base_url(). 'admin/accountant', 'refresh');
+        }
+
+
+        if($param1 == 'update') {
+            $this->crud_model->update_accountant($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully updated'));
+            
+            redirect(base_url(). 'admin/accountant', 'refresh');
+        }
+
+        if($param1 == 'delete'){
+            $this->crud_model->delete_accountant($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully deleted'));
+            
+            redirect(base_url(). 'admin/accountant', 'refresh');
+        }
+
+        $page_data['page_name']         = 'accountant/index';
+        $page_data['page_title']        = get_phrase('Manage Accountant');
+        $page_data['select_accountant']   = $this->db->get('accountant')->result_array();
+        $this->load->view('backend/base', $page_data);
+    }
+
+    function hostel($param1 = '', $param2 = '', $param3 = '') {
+
+        if ($param1 == 'insert'){
+            $this->crud_model->insert_hostel();
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully saved'));
+            
+            redirect(base_url(). 'admin/hostel', 'refresh');
+        }
+
+
+        if($param1 == 'update'){
+            $this->crud_model->update_hostel($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully updated'));
+            
+            redirect(base_url(). 'admin/hostel', 'refresh');
+        }
+
+        if($param1 == 'delete'){
+            $this->crud_model->delete_hostel($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully deleted'));
+            
+            redirect(base_url(). 'admin/hostel', 'refresh');
+        }
+
+        $page_data['page_name']         = 'hostel/index';
+        $page_data['page_title']        = get_phrase('Manage Hostel');
+        $page_data['select_hostel']     = $this->db->get('hostel')->result_array();
+        $this->load->view('backend/base', $page_data);
+    }
+
+    function hrm($param1 = '', $param2 = '', $param3 = '') {
+
+        if ($param1 == 'insert'){
+            $this->crud_model->insert_hrm();
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully saved'));
+           
+            redirect(base_url(). 'admin/hrm', 'refresh');
+        }
+
+        if($param1 == 'update'){
+            $this->crud_model->update_hrm($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully updated'));
+            
+            redirect(base_url(). 'admin/hrm', 'refresh');
+        }
+
+        if($param1 == 'delete'){
+            $this->crud_model->delete_hrm($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully deleted'));
+            
+            redirect(base_url(). 'admin/hrm', 'refresh');
+        }
+
+        $page_data['page_name']         = 'hrm/index';
+        $page_data['page_title']        = get_phrase('Manage HRM');
+        $page_data['select_hrm']        = $this->db->get('hrm')->result_array();
+        $this->load->view('backend/base', $page_data);
+    }
+
 }

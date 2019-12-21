@@ -48,9 +48,9 @@
                 <ul aria-expanded="false" class="collapse">
                     <li><a href="<?php echo base_url(); ?>admin/teachers"><?php echo get_phrase('Teachers'); ?></a></li>
                     <li><a href="<?php echo base_url(); ?>admin/librarian"><?php echo get_phrase('Librarian'); ?></a></li>
-                    <li><a href="<?php echo base_url(); ?>admin/accountants"><?php echo get_phrase('Teachers'); ?></a></li>
-                    <li><a href="<?php echo base_url(); ?>admin/hostel_manager"><?php echo get_phrase('Hostel Manager'); ?></a></li>
-                    <li><a href="<?php echo base_url(); ?>admin/human_resources"><?php echo get_phrase('Human Resources'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/accountant"><?php echo get_phrase('Accountants'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/hostel"><?php echo get_phrase('Hostel Manager'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/hrm"><?php echo get_phrase('Human Resources'); ?></a></li>
                 </ul>
             </li>
             <!------ End Personal ------>
