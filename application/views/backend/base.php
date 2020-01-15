@@ -211,6 +211,21 @@ $loginType      = $this->session->userdata('login_type');
             });
         });
     </script>
+
+    <script type="text/javascript">
+        function get_designation_val(department_id) {
+            if(department_id != '')
+                $.ajax({
+                    url: '<?php echo base_url();?>admin/get_designation/' + department_id,
+                    success: function(response){
+                        console.log(response);
+                        jQuery('#designation_holder').html(response);
+                    }
+                });
+            else
+                jQuery('#designation_holder').html('<option value=""><?php echo get_phrase("select_a_department_first"); ?></option>');
+        }
+    </script>
 </body>
 
 </html>

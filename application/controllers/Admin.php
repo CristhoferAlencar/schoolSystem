@@ -362,4 +362,155 @@ class Admin extends CI_Controller {
         $this->load->view('backend/base', $page_data);
     }
 
+    function teacher ($param1 = '', $param2 ='', $param3 =''){
+
+        if($param1 == 'insert'){
+            $this->teacher_model->insetTeacherFunction();
+            $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
+            redirect(base_url(). 'admin/teacher', 'refresh');
+        }
+
+        if($param1 == 'update'){
+            $this->teacher_model->updateTeacherFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+            redirect(base_url(). 'admin/teacher', 'refresh');
+        }
+
+
+        if($param1 == 'delete'){
+            $this->teacher_model->deleteTeacherFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+            redirect(base_url(). 'admin/teacher', 'refresh');
+    
+            }
+
+        $page_data['page_name']     = 'teacher/index';
+        $page_data['page_title']    = get_phrase('Manage Teacher');
+        $page_data['select_teacher']  = $this->db->get('teacher')->result_array();
+        $this->load->view('backend/base', $page_data);
+
+    }
+
+    function get_designation($department_id = null){
+
+        $designation = $this->db->get_where('designation', array('department_id' => $department_id))->result_array();
+        foreach($designation as $key => $row)
+        echo '<option value="'.$row['designation_id'].'">' . $row['name'] . '</option>';
+    }
+
+    /*
+    * The function manages vacancy
+    */
+    function vacancy ($param1 = '', $param2 ='', $param3 =''){
+
+        if($param1 == 'insert'){
+            $this->vacancy_model->insetVacancyFunction();
+            $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
+            redirect(base_url(). 'admin/vacancy', 'refresh');
+        }
+
+        if($param1 == 'update'){
+            $this->vacancy_model->updateVacancyFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+            redirect(base_url(). 'admin/vacancy', 'refresh');
+        }
+
+        if($param1 == 'delete'){
+            $this->vacancy_model->deleteVacancyFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+            redirect(base_url(). 'admin/vacancy', 'refresh');
+        }
+
+        $page_data['page_name']     = 'vacancy/index';
+        $page_data['page_title']    = get_phrase('Manage Vacancy');
+        $page_data['select_vacancy']  = $this->db->get('vacancy')->result_array();
+        $this->load->view('backend/base', $page_data);
+    }
+
+    /**
+     *  The function manages job applicant 
+     */
+    function application($param1 = 'applied', $param2 ='', $param3 =''){
+
+        if($param1 == 'insert'){
+            $this->application_model->insertApplicantFunction();
+            $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
+            redirect(base_url(). 'admin/application', 'refresh');
+        }
+
+        if($param1 == 'update'){
+            $this->application_model->updateApplicantFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+            redirect(base_url(). 'admin/application', 'refresh');
+        }
+
+        if($param1 == 'delete'){
+            $this->application_model->deleteApplicantFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+            redirect(base_url(). 'admin/application', 'refresh');
+        }
+
+        if($param1 != 'applied' && $param1 != 'on_review' && $param1 != 'interviewed' && $param1 != 'offered' && $param1 != 'hired' && $param1 != 'declined')
+            $param1 ='applied';
+        
+        $page_data['status']        = $param1;
+        $page_data['page_name']     = 'application/index';
+        $page_data['page_title']    = get_phrase('Job Applicant');
+        $this->load->view('backend/base', $page_data);
+    }
+
+    /**
+     *  The function manages Leave
+     */
+    function leave ($param1 = null, $param2 = null, $param3 = null){
+
+        if($param1 == 'update'){
+            $this->leave_model->updateLeaveFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+            redirect(base_url(). 'admin/leave', 'refresh');
+        }
+
+
+        if($param1 == 'delete'){
+            $this->leave_model->deleteLeaveFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+            redirect(base_url(). 'admin/leave', 'refresh');
+    
+            }
+
+        
+        $page_data['page_name']     = 'leave/index';
+        $page_data['page_title']    = get_phrase('Manage Leave');
+        $this->load->view('backend/base', $page_data);
+    }
+
+    /**
+     * The function manages Awards  
+     */
+    function award ($param1 = null, $param2 = null, $param3 = null){
+
+        if($param1 == 'create'){
+            $this->award_model->createAwardFunction();
+            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+            redirect(base_url(). 'admin/award', 'refresh');
+        }
+
+        if($param1 == 'update'){
+            $this->award_model->updateAwardFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+            redirect(base_url(). 'admin/award', 'refresh');
+        }
+
+
+        if($param1 == 'delete'){
+            $this->award_model->deleteAwardFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+            redirect(base_url(). 'admin/award', 'refresh');
+        }
+
+        $page_data['page_name']     = 'award/index';
+        $page_data['page_title']    = get_phrase('Manage Award');
+        $this->load->view('backend/base', $page_data);
+    }
+
 }

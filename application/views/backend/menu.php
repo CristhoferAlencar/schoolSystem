@@ -46,12 +46,16 @@
             </li>
             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-building"></i><span class="hide-menu"><?php echo get_phrase('Manage Employees'); ?></span></a>
                 <ul aria-expanded="false" class="collapse">
-                    <li><a href="<?php echo base_url(); ?>admin/teachers"><?php echo get_phrase('Teachers'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/teacher"><?php echo get_phrase('Teachers'); ?></a></li>
                     <li><a href="<?php echo base_url(); ?>admin/librarian"><?php echo get_phrase('Librarian'); ?></a></li>
                     <li><a href="<?php echo base_url(); ?>admin/accountant"><?php echo get_phrase('Accountants'); ?></a></li>
                     <li><a href="<?php echo base_url(); ?>admin/hostel"><?php echo get_phrase('Hostel Manager'); ?></a></li>
                     <li><a href="<?php echo base_url(); ?>admin/hrm"><?php echo get_phrase('Human Resources'); ?></a></li>
-                    <li><a href="<?php echo base_url(); ?>admin/alumni"><?php echo get_phrase('Human Alumni'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/alumni"><?php echo get_phrase('Alumni'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/vacancy"><?php echo get_phrase('Vacancies'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/application"><?php echo get_phrase('Job Applications'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/leave"><?php echo get_phrase('Leave'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/award"><?php echo get_phrase('Awards'); ?></a></li>
                 </ul>
             </li>
             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-building"></i><span class="hide-menu"><?php echo get_phrase('Manage Expenses'); ?></span></a>
