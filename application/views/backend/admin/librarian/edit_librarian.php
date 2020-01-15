@@ -47,7 +47,7 @@ foreach($select_librarian as $key => $librarian):
         <div class="form-group">
             <label for="maritalStatus"><?php echo get_phrase ('Marital Status');?></label>
             <select class="form-control select2" name="marital_status" id="maritalStatus">
-                <<option value="Married"<?php if ($librarian['marital_status'] == 'Married') echo 'selected;' ?>><?php echo get_phrase('Married');?></option>
+                <option value="Married"<?php if ($librarian['marital_status'] == 'Married') echo 'selected;' ?>><?php echo get_phrase('Married');?></option>
                 <option value="Single"<?php if ($librarian['marital_status'] == 'Single') echo 'selected;' ?>><?php echo get_phrase('Single');?></option>
                 <option value="Other"<?php if ($librarian['marital_status'] == 'Other') echo 'selected;' ?>><?php echo get_phrase('Other');?></option>
             </select>

@@ -67,17 +67,24 @@
                     </div>
                     <div class="form-group">
                         <label for="language"><?php echo get_phrase('Language');?></label>
-                        <select class="form-control custom-select" id="language" name="language">
-                            <?php
-                                $getLanguage = $this->db->list_fields('language');
-                                foreach ($getLanguage as $key => $field) {
-                                    if ($field == 'phrase_id' || $field == 'phrase') 
-                                        continue;
-                                    $default_language = $this->db->get_where('settings', array('type' => 'language'))-row()->description;
-                            ?>
-                                    <option value="<?php echo $field;?>" <?php if ($default_language ==  $field) echo 'selected';?>><?php echo $field;?></option>
-                                <?php } ?>
+                        <input type="text" class="form-control" id="language" placeholder="<?php echo get_phrase('Enter Language');?>" name="language" value="<?php echo $this->db->get_where('settings', array('type' => 'language'))->row()->description;?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="runningSession"><?php echo get_phrase('Running Session');?></label>
+                        <select class="form-control custom-select" id="runningSession" name="running_session">
+                        <?php $running_session = $this->db->get_where('settings', array('type' => 'session'))->row()->description; ?>
+                          <option value=""><?php echo get_phrase('select_running_session');?></option>
+                          <?php for($i = 0; $i < 10; $i++):?>
+                              <option value="<?php echo (2019+$i);?>-<?php echo (2019+$i+1);?>"
+                                <?php if($running_session == (2019+$i).'-'.(2019+$i+1)) echo 'selected';?>>
+                                  <?php echo (2019+$i);?> - <?php echo (2019+$i+1);?>
+                              </option>
+                          <?php endfor;?>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="systemFooter"><?php echo get_phrase('System Footer');?></label>
+                        <input type="text" class="form-control" id="systemFooter" placeholder="<?php echo get_phrase('Enter System Footer');?>" name="footer" value="<?php echo $this->db->get_where('settings', array('type' => 'footer'))->row()->description;?>">
                     </div>
 
                     <div class="form-group">
@@ -120,6 +127,54 @@
 
             </div>
         </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title"><?php echo get_phrase('Theme Settings'); ?></h4>
+
+                <?php echo form_open(base_url() . 'systemsetting/system_settings/themeSettings', array('class' => 'form pt-3', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
+
+                <label class="control-label"><?php echo get_phrase('Color'); ?></label>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="colorDefault" name="skin_colour" value="default" class="custom-control-input" <?php if($skin = $this->db->get_where('settings' , array('type'=>'skin_colour'))->row()->description == 'default') echo 'checked';?>>
+                                <label class="custom-control-label" for="colorDefault"><?php echo get_phrase('Default'); ?></label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="colorGreen" name="skin_colour" value="green" class="custom-control-input" <?php if($skin = $this->db->get_where('settings' , array('type'=>'skin_colour'))->row()->description == 'green') echo 'checked';?>>
+                                <label class="custom-control-label" for="colorGreen"><?php echo get_phrase('Green'); ?></label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="colorGray" name="skin_colour" value="gray" class="custom-control-input" <?php if($skin = $this->db->get_where('settings' , array('type'=>'skin_colour'))->row()->description == 'gray') echo 'checked';?>>
+                                <label class="custom-control-label" for="colorGray"><?php echo get_phrase('Gray'); ?></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="colorBlack" name="skin_colour" value="black" class="custom-control-input" <?php if($skin = $this->db->get_where('settings' , array('type'=>'skin_colour'))->row()->description == 'black') echo 'checked';?>>
+                                <label class="custom-control-label" for="colorBlack"><?php echo get_phrase('Black'); ?></label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="colorPurple" name="skin_colour" value="purple" class="custom-control-input" <?php if($skin = $this->db->get_where('settings' , array('type'=>'skin_colour'))->row()->description == 'purple') echo 'checked';?>>
+                                <label class="custom-control-label" for="colorPurple"><?php echo get_phrase('Purple'); ?></label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="colorBlue" name="skin_colour" value="blue" class="custom-control-input" <?php if($skin = $this->db->get_where('settings' , array('type'=>'skin_colour'))->row()->description == 'blue') echo 'checked';?>>
+                                <label class="custom-control-label" for="colorBlue"><?php echo get_phrase('Blue'); ?></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-block btn-info btn-rounded btn-sm"><i class="fa fa-save"></i>&nbsp;<?php echo get_phrase('Update Theme');?></button>
+                    </div>
+
+                <?php echo form_close(); ?>
+
+            </div>
+        </div>
+
     </div>
 </div>
 <!-- Row -->

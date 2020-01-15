@@ -2,10 +2,11 @@
 // $system_address = $this->db->get_where('settings', array('type' => 'address'))->row()->description;
 $system_name    = $this->db->get_where('settings', array('type' => 'system_name'))->row()->description;
 $language     = $this->db->get_where('settings', array('type' => 'language'))->row()->description;
+$text_align     = $this->db->get_where('settings', array('type' => 'text_align'))->row()->description;
 $loginType      = $this->session->userdata('login_type');
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo $language; ?>">
+<html lang="<?php echo $language; ?>" <?php if($text_align == 'right-to-left') echo "dir='rlt'"; ?>>
 
 <head>
     <meta charset="utf-8">
@@ -155,6 +156,8 @@ $loginType      = $this->session->userdata('login_type');
     <!-- end - This is for export functionality only -->
     <!-- Chart JS -->
     <!-- <script src="<?php echo base_url(); ?>university/js/dashboard1.js"></script> -->
+    <!-- Pages Scripts -->
+    <script src="<?php echo base_url(); ?>university/js/pages/department.js"></script>
 
     <?php if (($this->session->flashdata('error_message')) != ""): ?>
         <script type="text/javascript">

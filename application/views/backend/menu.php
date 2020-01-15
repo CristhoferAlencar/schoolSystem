@@ -51,6 +51,18 @@
                     <li><a href="<?php echo base_url(); ?>admin/accountant"><?php echo get_phrase('Accountants'); ?></a></li>
                     <li><a href="<?php echo base_url(); ?>admin/hostel"><?php echo get_phrase('Hostel Manager'); ?></a></li>
                     <li><a href="<?php echo base_url(); ?>admin/hrm"><?php echo get_phrase('Human Resources'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/alumni"><?php echo get_phrase('Human Alumni'); ?></a></li>
+                </ul>
+            </li>
+            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-building"></i><span class="hide-menu"><?php echo get_phrase('Manage Expenses'); ?></span></a>
+                <ul aria-expanded="false" class="collapse">
+                    <li><a href="<?php echo base_url(); ?>expense/expense"><?php echo get_phrase('Expenses'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>expense/expense_category"><?php echo get_phrase('Expenses category'); ?></a></li>
+                </ul>
+            </li>
+            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-building"></i><span class="hide-menu"><?php echo get_phrase('Manage Departments'); ?></span></a>
+                <ul aria-expanded="false" class="collapse">
+                    <li><a href="<?php echo base_url(); ?>department/department"><?php echo get_phrase('Departments'); ?></a></li>
                 </ul>
             </li>
             <!------ End Personal ------>

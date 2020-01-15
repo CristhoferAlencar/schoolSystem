@@ -333,4 +333,33 @@ class Admin extends CI_Controller {
         $this->load->view('backend/base', $page_data);
     }
 
+    function alumni($param1 = '', $param2 = '', $param3 = '') {
+
+        if ($param1 == 'insert'){
+            $this->alumni_model->insert_alumni();
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully saved'));
+            
+            redirect(base_url(). 'admin/alumni', 'refresh');
+        }
+
+        if($param1 == 'update') {
+            $this->alumni_model->update_alumni($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully updated'));
+            
+            redirect(base_url(). 'admin/alumni', 'refresh');
+        }
+
+        if($param1 == 'delete') {
+            $this->alumni_model->delete_alumni($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully deleted'));
+            
+            redirect(base_url(). 'admin/alumni', 'refresh');
+        }
+
+        $page_data['page_name']         = 'alumni/index';
+        $page_data['page_title']        = get_phrase('Manage Alumni');
+        $page_data['select_alumni']        = $this->db->get('alumni')->result_array();
+        $this->load->view('backend/base', $page_data);
+    }
+
 }
