@@ -158,6 +158,7 @@ $loginType      = $this->session->userdata('login_type');
     <!-- <script src="<?php echo base_url(); ?>university/js/dashboard1.js"></script> -->
     <!-- Pages Scripts -->
     <script src="<?php echo base_url(); ?>university/js/pages/department.js"></script>
+    <script src="<?php echo base_url(); ?>university/js/pages/jquery.PrintArea.js"></script>
 
     <?php if (($this->session->flashdata('error_message')) != ""): ?>
         <script type="text/javascript">
@@ -226,6 +227,125 @@ $loginType      = $this->session->userdata('login_type');
                 jQuery('#designation_holder').html('<option value=""><?php echo get_phrase("select_a_department_first"); ?></option>');
         }
     </script>
+
+    <script type="text/javascript">
+        var allowance_count     = 1;
+        var deduction_count     = 1;
+        var total_allowance     = 0;
+        var total_deduction     = 0;
+        var deleted_allowances  = [];
+        var deleted_deductions  = [];
+
+        // Get all the employees from the teacher table using the below ajax codes.
+        function get_employees(department_id){
+            if(department_id != null)
+                $.ajax({
+                    url     : '<?php echo base_url(); ?>admin/get_employees/' + department_id,
+                    success : function(response){
+                        jQuery('#employee_holder').html(response);
+                    }
+                });
+            else
+                jQuery('#employee_holder').html('<option value=""><?php echo get_phrase("select_a_department_first"); ?></option>');
+        }
+        //Get all the employees from the teacher table using the below ajax codes ends here.    
+
+        $('#allowance_input').hide();
+        $('#deduction_input').hide();
+
+        // Creating the blank allowance input
+        var blank_allowance     =   '';
+        $(document).ready(function(){
+            blank_allowance     =   $('#allowance_input').html();
+        });
+
+        // Creating the blank allowance input
+        var blank_deduction     =   '';
+        $(document).ready(function(){
+            blank_deduction    =   $('#deduction_input').html();
+        });
+
+        function add_allowance(){
+            allowance_count++;
+            $("#allowance").append(blank_allowance);
+            $('#allowance_amount').attr('id', 'allowance_amount_' + allowance_count);
+            $('#allowance_amount_delete').attr('id', 'allowance_amount_delete_' + allowance_count);
+            $('#allowance_amount_delete_' + allowance_count).attr('onclick', 'deleteAllowanceParentElement(this, ' + allowance_count + ')');
+        }
+
+        function add_deduction(){
+            deduction_count++;
+            $("#deduction").append(blank_deduction);
+            $('#deduction_amount').attr('id', 'deduction_amount_' + deduction_count);
+            $('#deduction_amount_delete').attr('id', 'deduction_amount_delete_' + deduction_count);
+            $('#deduction_amount_delete_' + deduction_count).attr('onclick', 'deleteDeductionParentElement(this, ' + deduction_count + ')');
+        }
+
+        // Removing aloowance input
+        function deleteAllowanceParentElement (n, allowance_count) {
+            n.parentNode.parentNode.parentNode.removeChild(n.parentNode.parentNode);
+            deleted_allowances.push(allowance_count);
+        }
+
+        // Removing deduction input
+        function deleteDeductionParentElement (n, deduction_count) {
+            n.parentNode.parentNode.parentNode.removeChild(n.parentNode.parentNode);
+            deleted_deductions.push(deduction_count);
+        }
+
+        function calculate_total_allowance(){
+            var amount;
+            for(i = 1; i <= allowance_count; i++) {
+                if(jQuery.inArray(i, deleted_allowances) == -1){
+                    amount = $('#allowance_amount_' + i).val();
+
+                    if(amount != '') {
+                        amount = parseInt(amount);
+                        total_allowance = amount + total_allowance;
+                        $('#total_allowance').attr('value', total_allowance);
+                    }
+                }
+            }
+            net_salary = parseInt($('#basic').val()) + parseInt($('#total_allowance').val()) - parseInt($('#total_deduction').val());
+            $('#net_salary').attr('value', net_salary);
+            total_allowance = 0;
+        }
+
+
+        function calculate_total_deduction(){
+            var amount;
+            for(i = 1; i <= deduction_count; i++) {
+                if(jQuery.inArray(i, deleted_deductions) == -1){
+                    amount = $('#deduction_amount_' + i).val();
+
+                    if(amount != '') {
+                        amount = parseInt(amount);
+                        total_deduction = amount + total_deduction;
+                        $('#total_deduction').attr('value', total_deduction);
+                    }
+                }
+            }
+            net_salary = parseInt($('#basic').val()) + parseInt($('#total_allowance').val()) - parseInt($('#total_deduction').val());
+            $('#net_salary').attr('value', net_salary);
+            total_allowance = 0;
+        }
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $("#print").click(function() {
+                var mode = 'popup'; //popup
+                var close = mode == "popup";
+                var options = {
+                    mode: mode,
+                    popClose: close
+                };
+                $("div.printableArea").printArea(options);
+                
+            });
+        });
+    </script>
+
 </body>
 
 </html>

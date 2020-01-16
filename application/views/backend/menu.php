@@ -58,6 +58,12 @@
                     <li><a href="<?php echo base_url(); ?>admin/award"><?php echo get_phrase('Awards'); ?></a></li>
                 </ul>
             </li>
+            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-building"></i><span class="hide-menu"><?php echo get_phrase('Payroll'); ?></span></a>
+                <ul aria-expanded="false" class="collapse">
+                    <li><a href="<?php echo base_url(); ?>admin/payroll"><?php echo get_phrase('Add Payslip'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/payroll_list"><?php echo get_phrase('List Payroll'); ?></a></li>
+                </ul>
+            </li>
             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-building"></i><span class="hide-menu"><?php echo get_phrase('Manage Expenses'); ?></span></a>
                 <ul aria-expanded="false" class="collapse">
                     <li><a href="<?php echo base_url(); ?>expense/expense"><?php echo get_phrase('Expenses'); ?></a></li>

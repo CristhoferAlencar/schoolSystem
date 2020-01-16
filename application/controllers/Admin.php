@@ -513,4 +513,78 @@ class Admin extends CI_Controller {
         $this->load->view('backend/base', $page_data);
     }
 
+    function payroll(){
+        
+        $page_data['page_name']     = 'payroll/create_payslip';
+        $page_data['page_title']    = get_phrase('Create Payslip');
+        $this->load->view('backend/base', $page_data);
+
+    }
+
+    function get_employees($department_id = null)
+    {
+        $employees = $this->db->get_where('teacher', array('department_id' => $department_id))->result_array();
+        foreach($employees as $key => $employees)
+            echo '<option value="' . $employees['teacher_id'] . '">' . $employees['name'] . '</option>';
+    }
+
+    function payroll_selector()
+    {
+        $department_id  = $this->input->post('department_id');
+        $employee_id    = $this->input->post('employee_id');
+        $month          = $this->input->post('month');
+        $year           = $this->input->post('year');
+        
+        redirect(base_url() . 'admin/payroll_view/' . $department_id. '/' . $employee_id . '/' . $month . '/' . $year, 'refresh');
+    }
+    
+    function payroll_view($department_id = null, $employee_id = null, $month = null, $year = null)
+    {
+        $page_data['department_id'] = $department_id;
+        $page_data['employee_id']   = $employee_id;
+        $page_data['month']         = $month;
+        $page_data['year']          = $year;
+        $page_data['page_name']     = 'payroll/payroll_add_view';
+        $page_data['page_title']    = get_phrase('Create Payslip');
+        $this->load->view('backend/base', $page_data);
+    }
+
+    function create_payroll(){
+        $this->payroll_model->insertPayrollFunction();
+        $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
+        redirect(base_url(). 'admin/payroll_list/filter2/'. $this->input->post('month').'/'. $this->input->post('year'), 'refresh');
+    }
+
+    /**
+     * The function manages AwPayroll List
+     */
+    function payroll_list ($param1 = null, $param2 = null, $param3 = null, $param4 = null){
+
+        if($param1 == 'mark_paid'){
+            $data['status'] =  1;
+            $this->db->update('payroll', $data, array('payroll_id' => $param2));
+
+            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+            redirect(base_url(). 'admin/payroll_list/filter2/'. $param3.'/'. $param4, 'refresh');
+        }
+
+        if($param1 == 'filter'){
+            $page_data['month'] = $this->input->post('month');
+            $page_data['year'] = $this->input->post('year');
+        }
+        else{
+            $page_data['month'] = date('n');
+            $page_data['year'] = date('Y');
+        }
+
+        if($param1 == 'filter2'){
+            $page_data['month'] = $param2;
+            $page_data['year'] = $param3;
+        }
+
+        $page_data['page_name']     = 'payroll/payroll_list';
+        $page_data['page_title']    = get_phrase('List Payroll');
+        $this->load->view('backend/base', $page_data);
+    }
+
 }
