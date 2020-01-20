@@ -33,3 +33,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 template-admin/
 node_modules/
 application/ci_session/
+school/

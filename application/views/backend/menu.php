@@ -56,6 +56,9 @@
                     <li><a href="<?php echo base_url(); ?>admin/application"><?php echo get_phrase('Job Applications'); ?></a></li>
                     <li><a href="<?php echo base_url(); ?>admin/leave"><?php echo get_phrase('Leave'); ?></a></li>
                     <li><a href="<?php echo base_url(); ?>admin/award"><?php echo get_phrase('Awards'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/classes"><?php echo get_phrase('Class'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/section"><?php echo get_phrase('Section'); ?></a></li>
+                    <li><a href="<?php echo base_url(); ?>subject/subject"><?php echo get_phrase('Subject'); ?></a></li>
                 </ul>
             </li>
             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-building"></i><span class="hide-menu"><?php echo get_phrase('Payroll'); ?></span></a>

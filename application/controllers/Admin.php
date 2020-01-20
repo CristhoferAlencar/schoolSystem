@@ -587,4 +587,271 @@ class Admin extends CI_Controller {
         $this->load->view('backend/base', $page_data);
     }
 
+    /**
+     * The function manages Class Information  
+     */
+    function classes ($param1 = null, $param2 = null, $param3 = null){
+
+        if($param1 == 'create'){
+            $this->class_model->createClassFunction();
+            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+            redirect(base_url(). 'admin/classes', 'refresh');
+        }
+
+        if($param1 == 'update'){
+            $this->class_model->updateClassFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+            redirect(base_url(). 'admin/classes', 'refresh');
+        }
+
+        if($param1 == 'delete'){
+            $this->class_model->deleteClassFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+            redirect(base_url(). 'admin/classes', 'refresh');
+    
+        }
+
+        $page_data['page_name']     = 'class/index';
+        $page_data['page_title']    = get_phrase('Manage Class');
+        $this->load->view('backend/base', $page_data);
+    }
+
+    /**
+     * The function manages Section  
+     */
+    function section ($param1 = null, $param2 = null, $param3 = null){
+
+        if($param1 == 'create'){
+            $this->section_model->createSectionFunction();
+            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+            redirect(base_url(). 'admin/section', 'refresh');
+        }
+
+        if($param1 == 'update'){
+            $this->section_model->updateSectionFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+            redirect(base_url(). 'admin/section', 'refresh');
+        }
+
+        if($param1 == 'delete'){
+            $this->section_model->deleteSectionFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+            redirect(base_url(). 'admin/section', 'refresh');
+        }
+
+        $page_data['page_name']     = 'section/index';
+        $page_data['page_title']    = get_phrase('Manage Section');
+        $this->load->view('backend/base', $page_data);
+    }
+
+    function sections ($class_id = null){
+
+        if($class_id == '')
+            $class_id = $this->db->get('class')->first_row()->class_id;
+        
+        $page_data['page_name']     = 'section/index';
+        $page_data['class_id']      = $class_id;
+        $page_data['page_title']    = get_phrase('Manage Section');
+        $this->load->view('backend/base', $page_data);
+    }
+    
+    /**
+     * The function manages school timetable
+     */
+    function class_routine ($param1 = '', $param2 = '', $param3 = ''){
+
+        if($param1 == 'create'){
+            $this->class_routine_model->createTimetableFunction();
+            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+            redirect(base_url(). 'admin/listStudentTimetable', 'refresh');
+        }
+
+        if($param1 == 'update'){
+            $this->class_routine_model->updateTimetableFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+            redirect(base_url(). 'admin/listStudentTimetable', 'refresh');
+        }
+
+        if($param1 == 'delete'){
+            $this->db->where('class_routine_id', $param2);
+            $this->db->delete('class_routine');
+            //$this->class_routine_model->deleteTimetableFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+            redirect(base_url(). 'admin/listStudentTimetable', 'refresh');
+        }
+    }
+
+    function listStudentTimetable(){
+        $page_data['page_name']     = 'listStudentTimetable/index';
+        $page_data['page_title']    = get_phrase('School Timetable');
+        $this->load->view('backend/base', $page_data);
+    }
+
+    function class_routine_add(){
+        $page_data['page_name']     = 'classRoutineAdd/index';
+        $page_data['page_title']    = get_phrase('School Timetable');
+        $this->load->view('backend/base', $page_data);
+    }
+
+    function get_class_section_subject($class_id){
+        $page_data['class_id']  =   $class_id;
+        $this->load->view('backend/admin/class_routine_section_subject_selector', $page_data);
+    }
+
+    function studentTimetableLoad($class_id){
+        $page_data['class_id']  =   $class_id;
+        $this->load->view('backend/admin/studentTimetableLoad', $page_data);
+    }
+
+    function class_routine_print_view($class_id, $section_id){
+        $page_data['class_id']      =   $class_id;
+        $page_data['section_id']    =   $section_id;
+        $this->load->view('backend/admin/class_routine_print_view', $page_data);
+    }
+
+    function section_subject_edit($class_id, $class_routine_id){
+        $page_data['class_id']          =   $class_id;
+        $page_data['class_routine_id']  =   $class_routine_id;
+        $this->load->view('backend/admin/class_routine_section_subject_edit', $page_data);
+    }
+
+    /**
+     * The function manages school dormitory
+     */
+    function dormitory ($param1 = null, $param2 = null, $param3 = null){
+
+        if($param1 == 'create'){
+            $this->dormitory_model->createDormitoryFunction();
+            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+            redirect(base_url(). 'admin/dormitory', 'refresh');
+        }
+
+        if($param1 == 'update'){
+            $this->dormitory_model->updateDormitoryFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+            redirect(base_url(). 'admin/dormitory', 'refresh');
+        }
+
+        if($param1 == 'delete'){
+            $this->dormitory_model->deleteDormitoryFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+            redirect(base_url(). 'admin/dormitory', 'refresh');
+        }
+
+        $page_data['page_name']     = 'dormitory/index';
+        $page_data['page_title']    = get_phrase('Manage Dormitory');
+        $this->load->view('backend/base', $page_data);
+    }
+
+    /**
+     * The function manages hostel room
+     */
+    function hostel_room ($param1 = null, $param2 = null, $param3 = null){
+
+        if($param1 == 'create'){
+            $this->dormitory_model->createHostelRoomFunction();
+            $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
+            redirect(base_url(). 'admin/hostel_room', 'refresh');
+        }
+
+        if($param1 == 'update'){
+            $this->dormitory_model->updateHostelRoomFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+            redirect(base_url(). 'admin/hostel_room', 'refresh');
+        }
+
+        if($param1 == 'delete'){
+            $this->dormitory_model->deleteHostelRoomFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+            redirect(base_url(). 'admin/hostel_room', 'refresh');
+        }
+
+        $page_data['page_name']     = 'hostelRoom/index';
+        $page_data['page_title']    = get_phrase('Hostel Room');
+        $this->load->view('backend/base', $page_data);
+    }
+
+    /**
+     * The function manages hostel category
+     */
+    function hostel_category ($param1 = null, $param2 = null, $param3 = null){
+
+        if($param1 == 'create'){
+            $this->dormitory_model->createHostelCategoryFunction();
+            $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
+            redirect(base_url(). 'admin/hostel_category', 'refresh');
+        }
+
+        if($param1 == 'update'){
+            $this->dormitory_model->updateHostelCategoryFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+            redirect(base_url(). 'admin/hostel_category', 'refresh');
+        }
+
+        if($param1 == 'delete'){
+            $this->dormitory_model->deleteHostelCategoryFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+            redirect(base_url(). 'admin/hostel_category', 'refresh');
+        }
+
+        $page_data['page_name']     = 'hostelCategory/index';
+        $page_data['page_title']    = get_phrase('Hostel Category');
+        $this->load->view('backend/base', $page_data);
+    }
+
+    /**
+     * The function manages academic syllabus
+     */
+    function academic_syllabus ($param1 = null, $param2 = null, $param3 = null){
+
+        if($param1 == 'create'){
+            $this->academic_model->createAcademicSyllabus();
+            $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
+            redirect(base_url(). 'admin/academic_syllabus', 'refresh');
+        }
+
+        if($param1 == 'update'){
+            $this->academic_model->updateAcademicSyllabus($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+            redirect(base_url(). 'admin/academic_syllabus', 'refresh');
+        }
+
+
+        if($param1 == 'delete'){
+            $this->academic_model->deleteAcademicSyllabus($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+            redirect(base_url(). 'admin/academic_syllabus', 'refresh');
+
+        }
+
+        $page_data['page_name']     = 'academicSyllabus/index';
+        $page_data['page_title']    = get_phrase('Academic Syllabus');
+        $this->load->view('backend/base', $page_data);
+    }
+
+    function get_class_subject($class_id){
+        $subjects = $this->db->get_where('subject', array('class_id' => $class_id))->result_array();
+        foreach($subjects as $key => $subject){
+            echo '<option value="'.$subject['subject_id'].'">'.$subject['name'].'</option>';
+        }
+    }
+
+    function download_academic_syllabus($academic_syllabus_code){
+        $file_name = $this->db->get_where('academic_syllabus', array('academic_syllabus_code' => $academic_syllabus_code))->row()->file_name;
+        $this->load->helper('download');
+        $data = file_get_contents('uploads/syllabus' . $file_name);
+        $name = $file_name;
+        force_download($name, $data);
+    }
+
+    function get_academic_syllabus ($class_id = null){
+        if($class_id == '')
+            $class_id = $this->db->get('class')->first_row()->class_id;
+        
+        $page_data['page_name']     = 'academicSyllabus/index';
+        $page_data['class_id']      = $class_id;
+        $page_data['page_title']    = get_phrase('Academic Syllabus');
+        $this->load->view('backend/base', $page_data);
+    }
+
 }
